@@ -24,7 +24,7 @@ const Nav = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <a href="/" className="text-2xl text-white" style={{ fontFamily: 'Modak' }}>
+          <a href="/" className="text-3xl text-white" style={{ fontFamily: 'Modak' }}>
             LoSpace
           </a>
 
