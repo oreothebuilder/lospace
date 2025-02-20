@@ -31,10 +31,10 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/5 z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "blur(8px) brightness(0.5)",
+          filter: "blur(8px) brightness(0.3)",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-sm z-10" />
