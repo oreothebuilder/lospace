@@ -28,9 +28,8 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <FloatingBubbles />
       <div
-        className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/5"
+        className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/5 z-0"
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80')",
           backgroundSize: "cover",
@@ -38,11 +37,11 @@ const Hero = () => {
           filter: "blur(8px) brightness(0.5)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-sm" />
-
+      <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-sm z-10" />
+      <FloatingBubbles />
       <div
         ref={heroRef}
-        className="container mx-auto px-4 pt-20 reveal z-10 text-center"
+        className="container mx-auto px-4 pt-20 reveal z-30 text-center"
       >
         <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-8">
           Redefining Productivity Spaces
