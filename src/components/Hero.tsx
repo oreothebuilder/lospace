@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import Button from "./Button";
 import { Building, ArrowRight } from "lucide-react";
 import FloatingBubbles from "./FloatingBubbles";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -26,6 +27,11 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
+  const mainText = "Work. Study. Grow.";
+  const subText = "Together";
+  const mainWords = mainText.split(" ");
+  const subWords = subText.split(" ");
+
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div
@@ -46,11 +52,56 @@ const Hero = () => {
         <span className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 text-sm font-medium mb-8">
           Redefining Productivity Spaces
         </span>
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Work. Study. Grow.
-          <br />
-          <span className="text-gradient">Together.</span>
-        </h1>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 2 }}
+          className="max-w-4xl mx-auto"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            {mainWords.map((word, wordIndex) => (
+              <span key={wordIndex} className="inline-block mr-4 last:mr-0">
+                {word.split("").map((letter, letterIndex) => (
+                  <motion.span
+                    key={`${wordIndex}-${letterIndex}`}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      delay: wordIndex * 0.1 + letterIndex * 0.03,
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 25,
+                    }}
+                    className="inline-block"
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
+            <br />
+            {subWords.map((word, wordIndex) => (
+              <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
+                {word.split("").map((letter, letterIndex) => (
+                  <motion.span
+                    key={`sub-${wordIndex}-${letterIndex}`}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 25,
+                    }}
+                    className="inline-block text-gradient"
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
+          </h1>
+        </motion.div>
         <p className="text-lg md:text-xl text-foreground/80 mb-8 max-w-2xl mx-auto">
           LoSpace is a hybrid co-working space and digital community where focus meets collaboration.
           Whether you need a quiet physical study room or a virtual workspace, we've got you covered.
