@@ -27,8 +27,8 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
-  const mainText = "Work. Study. Grow.";
-  const subText = "Together";
+  const mainText = "changing the way";
+  const subText = "you grind";
   const mainWords = mainText.split(" ");
   const subWords = subText.split(" ");
 
