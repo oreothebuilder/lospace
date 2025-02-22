@@ -4,6 +4,7 @@ import Button from "./Button";
 import { Building, ArrowRight } from "lucide-react";
 import FloatingBubbles from "./FloatingBubbles";
 import { motion } from "framer-motion";
+import MouseGradient from "./MouseGradient";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -34,17 +35,17 @@ const Hero = () => {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-gradient-to-br from-accent/10 to-primary/5 z-0"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?auto=format&fit=crop&q=80')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          filter: "blur(8px) brightness(0.3)",
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-sm z-10" />
-      <FloatingBubbles />
+      {/* Fixed background gradients */}
+      <div className="pointer-events-none fixed inset-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+        <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-primary/20 blur-[100px]" />
+        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-purple-500/20 blur-[100px]" />
+      </div>
+      
+      {/* Mouse follow gradient */}
+      <MouseGradient />
+
+      {/* Content */}
       <div
         ref={heroRef}
         className="container mx-auto px-4 pt-20 reveal z-30 text-center"
