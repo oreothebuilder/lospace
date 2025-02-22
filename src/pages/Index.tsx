@@ -5,6 +5,7 @@ import Features from "@/components/Features";
 import ProblemSolution from "@/components/ProblemSolution";
 import Pricing from "@/components/Pricing";
 import TestimonialCard from "@/components/TestimonialCard";
+import Footer from "@/components/Footer";
 import Button from "@/components/Button";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
@@ -88,6 +89,7 @@ const Index = () => {
           </Button>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
