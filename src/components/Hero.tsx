@@ -45,6 +45,9 @@ const Hero = () => {
       {/* Mouse follow gradient */}
       <MouseGradient />
 
+      {/* Floating Bubbles */}
+      <FloatingBubbles />
+
       {/* Content */}
       <div
         ref={heroRef}
