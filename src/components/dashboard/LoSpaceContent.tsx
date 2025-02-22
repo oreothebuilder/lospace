@@ -1,6 +1,7 @@
 
 import { Camera, Mic, Share, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface LoSpaceContentProps {
   communityId: string | null;
@@ -8,6 +9,43 @@ interface LoSpaceContentProps {
 }
 
 const LoSpaceContent = ({ communityId, repositoryId }: LoSpaceContentProps) => {
+  const { toast } = useToast();
+  
+  const handleMicToggle = () => {
+    toast({
+      title: "Microphone",
+      description: "Microphone toggle coming soon!",
+    });
+  };
+
+  const handleCameraToggle = () => {
+    toast({
+      title: "Camera",
+      description: "Camera toggle coming soon!",
+    });
+  };
+
+  const handleShareScreen = () => {
+    toast({
+      title: "Share Screen",
+      description: "Screen sharing coming soon!",
+    });
+  };
+
+  const handleShareLoSpace = () => {
+    toast({
+      title: "Share LoSpace",
+      description: "Invitation link copied to clipboard coming soon!",
+    });
+  };
+
+  const handleShowMembers = () => {
+    toast({
+      title: "Members",
+      description: "Members list coming soon!",
+    });
+  };
+
   if (!communityId || !repositoryId) {
     return (
       <div className="flex-1 flex items-center justify-center bg-background/50">
@@ -31,17 +69,16 @@ const LoSpaceContent = ({ communityId, repositoryId }: LoSpaceContentProps) => {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" onClick={handleShowMembers}>
             <Users className="h-4 w-4 mr-2" />
             12 Members
           </Button>
-          <Button variant="outline" size="icon">
+          <Button variant="outline" size="icon" onClick={handleShareLoSpace}>
             <Share className="h-4 w-4" />
           </Button>
         </div>
       </div>
       <div className="flex-1 p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {/* Mock video grids */}
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
@@ -53,10 +90,10 @@ const LoSpaceContent = ({ communityId, repositoryId }: LoSpaceContentProps) => {
             <div className="absolute bottom-0 left-0 right-0 p-2 flex items-center justify-between bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
               <span className="text-sm font-medium">User {i + 1}</span>
               <div className="flex items-center gap-2">
-                <Button variant="ghost" size="icon" className="h-6 w-6">
+                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={handleMicToggle}>
                   <Mic className="h-3 w-3" />
                 </Button>
-                <Button variant="ghost" size="icon" className="h-6 w-6">
+                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={handleCameraToggle}>
                   <Camera className="h-3 w-3" />
                 </Button>
               </div>
@@ -65,13 +102,13 @@ const LoSpaceContent = ({ communityId, repositoryId }: LoSpaceContentProps) => {
         ))}
       </div>
       <div className="p-4 border-t border-border flex items-center justify-center gap-4">
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" onClick={handleMicToggle}>
           <Mic className="h-5 w-5" />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" onClick={handleCameraToggle}>
           <Camera className="h-5 w-5" />
         </Button>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" onClick={handleShareScreen}>
           <Share className="h-5 w-5" />
         </Button>
       </div>

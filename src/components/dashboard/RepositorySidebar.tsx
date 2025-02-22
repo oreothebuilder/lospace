@@ -1,6 +1,7 @@
 
 import { Plus, Hash, Settings, Users, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface RepositorySidebarProps {
   communityId: string;
@@ -13,7 +14,8 @@ const RepositorySidebar = ({
   selectedRepository,
   onSelectRepository,
 }: RepositorySidebarProps) => {
-  // Mock data - replace with real data later
+  const { toast } = useToast();
+
   const repositories = [
     { id: "1", name: "Physics", type: "lospace" },
     { id: "2", name: "Chemistry", type: "lospace" },
@@ -21,6 +23,27 @@ const RepositorySidebar = ({
     { id: "4", name: "Study Resources", type: "repository" },
     { id: "5", name: "Important Links", type: "repository" },
   ];
+
+  const handleCreateLoSpace = () => {
+    toast({
+      title: "Create LoSpace",
+      description: "Create a new study space coming soon!",
+    });
+  };
+
+  const handleCreateRepository = () => {
+    toast({
+      title: "Create Repository",
+      description: "Create a new repository coming soon!",
+    });
+  };
+
+  const handleUserSettings = () => {
+    toast({
+      title: "User Settings",
+      description: "User settings panel coming soon!",
+    });
+  };
 
   return (
     <div className="w-60 bg-muted/50 flex flex-col h-full border-r border-border">
@@ -34,7 +57,7 @@ const RepositorySidebar = ({
               <Video className="h-4 w-4" />
               LOSPACES
             </span>
-            <Button variant="ghost" size="icon" className="h-4 w-4">
+            <Button variant="ghost" size="icon" className="h-4 w-4" onClick={handleCreateLoSpace}>
               <Plus className="h-3 w-3" />
             </Button>
           </div>
@@ -61,7 +84,7 @@ const RepositorySidebar = ({
               <Hash className="h-4 w-4" />
               REPOSITORIES
             </span>
-            <Button variant="ghost" size="icon" className="h-4 w-4">
+            <Button variant="ghost" size="icon" className="h-4 w-4" onClick={handleCreateRepository}>
               <Plus className="h-3 w-3" />
             </Button>
           </div>
@@ -91,7 +114,7 @@ const RepositorySidebar = ({
             </div>
             <span className="text-sm font-medium">Username</span>
           </div>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" onClick={handleUserSettings}>
             <Settings className="h-4 w-4" />
           </Button>
         </div>
