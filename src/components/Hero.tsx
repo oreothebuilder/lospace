@@ -51,7 +51,7 @@ const Hero = () => {
       {/* Content */}
       <div
         ref={heroRef}
-        className="container mx-auto px-4 pt-20 reveal z-30 text-center"
+        className="container mx-auto px-4 pt-20 pb-12 reveal z-30 text-center"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -81,26 +81,28 @@ const Hero = () => {
               </span>
             ))}
             <br />
-            {subWords.map((word, wordIndex) => (
-              <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
-                {word.split("").map((letter, letterIndex) => (
-                  <motion.span
-                    key={`sub-${wordIndex}-${letterIndex}`}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 25,
-                    }}
-                    className="inline-block text-gradient"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>
-            ))}
+            <span className="inline-block mt-2 mb-4">
+              {subWords.map((word, wordIndex) => (
+                <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
+                  {word.split("").map((letter, letterIndex) => (
+                    <motion.span
+                      key={`sub-${wordIndex}-${letterIndex}`}
+                      initial={{ y: 100, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{
+                        delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
+                        type: "spring",
+                        stiffness: 150,
+                        damping: 25,
+                      }}
+                      className="inline-block text-gradient"
+                    >
+                      {letter}
+                    </motion.span>
+                  ))}
+                </span>
+              ))}
+            </span>
           </h1>
         </motion.div>
         <p className="text-lg md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto font-medium">
