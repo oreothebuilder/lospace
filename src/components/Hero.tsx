@@ -28,8 +28,10 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
-  const mainText = "Changing the way you grind";
-  const words = mainText.split(" ");
+  const mainText = "Changing the way";
+  const subText = "you grind";
+  const mainWords = mainText.split(" ");
+  const subWords = subText.split(" ");
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -58,7 +60,7 @@ const Hero = () => {
           className="max-w-4xl mx-auto"
         >
           <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            {words.map((word, wordIndex) => (
+            {mainWords.map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block mr-4 last:mr-0">
                 {word.split("").map((letter, letterIndex) => (
                   <motion.span
@@ -72,6 +74,27 @@ const Hero = () => {
                       damping: 25,
                     }}
                     className="inline-block"
+                  >
+                    {letter}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
+            <br />
+            {subWords.map((word, wordIndex) => (
+              <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
+                {word.split("").map((letter, letterIndex) => (
+                  <motion.span
+                    key={`sub-${wordIndex}-${letterIndex}`}
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{
+                      delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
+                      type: "spring",
+                      stiffness: 150,
+                      damping: 25,
+                    }}
+                    className="inline-block text-gradient"
                   >
                     {letter}
                   </motion.span>
