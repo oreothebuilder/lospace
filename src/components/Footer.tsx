@@ -4,81 +4,94 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Logo and Copyright Section */}
-          <div className="col-span-2">
-            <h3 className="font-bold text-xl mb-2">LoSpace</h3>
-            <p className="text-sm text-gray-400">© Lospace™ Pvt Ltd</p>
+    <footer className="border-t border-border bg-background/50 backdrop-blur-xl">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">LoSpace</h3>
+            <p className="text-sm text-muted-foreground">
+              Empowering focused work through hybrid spaces and digital community.
+            </p>
+            <div className="flex items-center space-x-4">
+              <Button variant="ghost" size="icon">
+                <Twitter className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon">
+                <Github className="h-4 w-4" />
+              </Button>
+              <Button variant="ghost" size="icon">
+                <Linkedin className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
-
-          {/* Product Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Product</h4>
+          
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Product</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/overview" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Overview
+                <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Features
                 </a>
               </li>
               <li>
-                <a href="/customers" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Customers
+                <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#locations" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Locations
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Company Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Company</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/about" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <a href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   About
                 </a>
               </li>
               <li>
-                <a href="/jobs" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Jobs
+                <a href="/blog" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="/careers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Careers
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Support Links */}
           <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold mb-4">Support</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/faqs" className="text-sm text-gray-400 hover:text-white transition-colors">
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="text-sm text-gray-400 hover:text-white transition-colors">
-                    Contact us
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a href="/terms" className="text-sm text-gray-400 hover:text-white transition-colors">
-                    Terms
-                  </a>
-                </li>
-                <li>
-                  <a href="/privacy" className="text-sm text-gray-400 hover:text-white transition-colors">
-                    Privacy
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <h3 className="text-lg font-semibold">Support</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="text-center text-sm text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} LoSpace. All rights reserved.</p>
           </div>
         </div>
       </div>
