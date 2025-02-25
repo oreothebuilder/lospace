@@ -34,9 +34,9 @@ const ProblemSolution = () => {
           <div className="space-y-6 p-6 rounded-2xl bg-background/50 backdrop-blur shadow-xl">
             <div className="h-48 rounded-lg bg-red-100/10 flex items-center justify-center overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
-                alt="Person working alone"
-                className="w-full h-full object-cover opacity-80"
+                src="/lovable-uploads/fe2d78c8-af57-4832-ac1a-6c3482da6ea8.png"
+                alt="Person feeling isolated"
+                className="w-full h-full object-contain bg-black"
               />
             </div>
             <h3 className="text-xl font-semibold">The Problem</h3>
