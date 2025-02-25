@@ -1,9 +1,8 @@
 
 import { useEffect, useRef } from "react";
 import Button from "./Button";
-import { Building, ArrowRight } from "lucide-react";
-import FloatingBubbles from "./FloatingBubbles";
 import { motion } from "framer-motion";
+import FloatingBubbles from "./FloatingBubbles";
 import MouseGradient from "./MouseGradient";
 
 const Hero = () => {
@@ -51,71 +50,90 @@ const Hero = () => {
       {/* Content */}
       <div
         ref={heroRef}
-        className="container mx-auto px-4 pt-20 pb-12 reveal z-30 text-center"
+        className="container mx-auto px-4 pt-20 pb-12 reveal z-30"
       >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
-          className="max-w-4xl mx-auto"
-        >
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            {mainWords.map((word, wordIndex) => (
-              <span key={wordIndex} className="inline-block mr-4 last:mr-0">
-                {word.split("").map((letter, letterIndex) => (
-                  <motion.span
-                    key={`${wordIndex}-${letterIndex}`}
-                    initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      delay: wordIndex * 0.1 + letterIndex * 0.03,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 25,
-                    }}
-                    className="inline-block"
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-              </span>
-            ))}
-            <br />
-            <span className="inline-block mt-2 mb-4">
-              {subWords.map((word, wordIndex) => (
-                <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Text content */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+            className="text-center lg:text-left"
+          >
+            <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+              {mainWords.map((word, wordIndex) => (
+                <span key={wordIndex} className="inline-block mr-4 last:mr-0">
                   {word.split("").map((letter, letterIndex) => (
                     <motion.span
-                      key={`sub-${wordIndex}-${letterIndex}`}
+                      key={`${wordIndex}-${letterIndex}`}
                       initial={{ y: 100, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{
-                        delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
+                        delay: wordIndex * 0.1 + letterIndex * 0.03,
                         type: "spring",
                         stiffness: 150,
                         damping: 25,
                       }}
-                      className="inline-block text-gradient"
+                      className="inline-block"
                     >
                       {letter}
                     </motion.span>
                   ))}
                 </span>
               ))}
-            </span>
-          </h1>
-        </motion.div>
-        <p className="text-lg md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto font-medium">
-          Find Your Focus. Build Your Community. Achieve More.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <Button
-            size="lg"
-            className="group bg-[#1a41db] hover:bg-[#1a41db]/90 text-white px-8"
-            onClick={() => window.location.href = "#signup"}
+              <br />
+              <span className="inline-block mt-2 mb-4">
+                {subWords.map((word, wordIndex) => (
+                  <span key={`sub-${wordIndex}`} className="inline-block mr-4 last:mr-0">
+                    {word.split("").map((letter, letterIndex) => (
+                      <motion.span
+                        key={`sub-${wordIndex}-${letterIndex}`}
+                        initial={{ y: 100, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{
+                          delay: (mainWords.length * 0.1) + wordIndex * 0.1 + letterIndex * 0.03,
+                          type: "spring",
+                          stiffness: 150,
+                          damping: 25,
+                        }}
+                        className="inline-block text-gradient"
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+            </h1>
+            <p className="text-lg md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+              Find Your Focus. Build Your Community. Achieve More.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+              <Button
+                size="lg"
+                className="group bg-[#1a41db] hover:bg-[#1a41db]/90 text-white px-8"
+                onClick={() => window.location.href = "#signup"}
+              >
+                Sign up today
+              </Button>
+            </div>
+          </motion.div>
+
+          {/* Right side - Illustration */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="relative w-full max-w-[600px] mx-auto"
           >
-            Sign up today
-          </Button>
+            <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src="/lovable-uploads/0e4d5ff9-a9d7-405f-8979-d0eae00cdfe1.png" 
+                alt="Video call illustration" 
+                className="w-full h-auto"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
