@@ -128,7 +128,7 @@ const Hero = () => {
           >
             <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="/lovable-uploads/0e4d5ff9-a9d7-405f-8979-d0eae00cdfe1.png" 
+                src="/lovable-uploads/950e6975-e576-4237-a40e-1c0fa7eb80a1.png" 
                 alt="Video call illustration" 
                 className="w-full h-auto"
               />
