@@ -58,7 +58,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 2 }}
-            className="text-center lg:text-left"
+            className="text-center"
           >
             <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
               {mainWords.map((word, wordIndex) => (
@@ -105,10 +105,10 @@ const Hero = () => {
                 ))}
               </span>
             </h1>
-            <p className="text-lg md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto lg:mx-0 font-medium">
+            <p className="text-lg md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto">
               Find Your Focus. Build Your Community. Achieve More.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Button
                 size="lg"
                 className="group bg-[#1a41db] hover:bg-[#1a41db]/90 text-white px-8"
