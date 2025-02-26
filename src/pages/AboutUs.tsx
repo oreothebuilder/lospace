@@ -2,7 +2,6 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import FloatingBubbles from "@/components/FloatingBubbles";
 import MouseGradient from "@/components/MouseGradient";
 
 const AboutUs = () => {
@@ -19,9 +18,6 @@ const AboutUs = () => {
       
       {/* Mouse follow gradient */}
       <MouseGradient />
-
-      {/* Floating Bubbles */}
-      <FloatingBubbles />
       
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-background">
@@ -43,7 +39,7 @@ const AboutUs = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16">
+      <section className="py-16 relative z-10">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -52,13 +48,13 @@ const AboutUs = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-6"
             >
-              <h2 className="text-3xl font-bold">Our Mission</h2>
-              <p className="text-foreground/80">
+              <h2 className="text-3xl font-bold text-white">Our Mission</h2>
+              <p className="text-white text-lg">
                 At LoSpace, we believe that great work happens when people feel connected, 
                 inspired, and supported. Our mission is to create digital spaces that foster 
                 collaboration, productivity, and community.
               </p>
-              <p className="text-foreground/80">
+              <p className="text-white text-lg">
                 We're building more than just a platform - we're creating a movement 
                 that transforms how people work, learn, and grow together in the 
                 digital age.
