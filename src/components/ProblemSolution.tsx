@@ -36,7 +36,7 @@ const ProblemSolution = () => {
 
           <div className="space-y-6 p-6 rounded-2xl bg-primary/5 backdrop-blur shadow-xl">
             <div className="h-48 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="People working together" className="w-full h-full object-cover" />
+              <img alt="People working together" src="/lovable-uploads/09462dc4-c919-4fbf-8a97-c1e97b09350a.png" className="w-full h-full object-contain" />
             </div>
             <h3 className="text-xl font-semibold">The Solution</h3>
             <p className="text-foreground/80">
