@@ -26,7 +26,7 @@ const AboutUs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-24"
+            className="text-center mb-16"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               About <span className="text-gradient">LoSpace</span>
@@ -34,6 +34,20 @@ const AboutUs = () => {
             <p className="text-xl text-white max-w-2xl mx-auto">
               Building the future of collaborative workspaces, one connection at a time.
             </p>
+          </motion.div>
+
+          {/* New illustration */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="max-w-4xl mx-auto mb-24"
+          >
+            <img 
+              src="/lovable-uploads/d327e4da-d508-4460-8f81-9a658b3abe77.png" 
+              alt="Person working at desk with computer" 
+              className="w-full h-auto rounded-xl"
+            />
           </motion.div>
 
           <motion.div
