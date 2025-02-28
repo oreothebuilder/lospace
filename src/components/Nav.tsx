@@ -48,9 +48,16 @@ const Nav = () => {
             <a href="#testimonials" className="text-foreground/80 hover:text-foreground transition-colors">
               Testimonials
             </a>
-            <Button variant="primary" size="sm">
-              Get Started
-            </Button>
+            <Link
+              to="/waitlist"
+              className={`text-foreground/80 hover:text-foreground transition-colors ${
+                location.pathname === "/waitlist" ? "text-foreground" : ""
+              }`}
+            >
+              <Button variant="primary" size="sm">
+                Join Waitlist
+              </Button>
+            </Link>
           </div>
 
           <button
@@ -93,9 +100,17 @@ const Nav = () => {
             >
               Testimonials
             </a>
-            <Button variant="primary" size="sm" className="w-full">
-              Get Started
-            </Button>
+            <Link
+              to="/waitlist"
+              className={`block ${
+                location.pathname === "/waitlist" ? "text-foreground" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Button variant="primary" size="sm" className="w-full">
+                Join Waitlist
+              </Button>
+            </Link>
           </div>
         )}
       </div>
