@@ -3,9 +3,10 @@ import { useState } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import MouseGradient from "@/components/MouseGradient";
 import { useToast } from "@/components/ui/use-toast";
 import Button from "@/components/Button";
+import { BackgroundBeams } from "@/components/ui/background-beams";
+import { Input } from "@/components/ui/input";
 
 const Waitlist = () => {
   const [email, setEmail] = useState("");
@@ -44,105 +45,78 @@ const Waitlist = () => {
     <div className="min-h-screen flex flex-col">
       <Nav />
 
-      {/* Fixed background gradients */}
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-        <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-primary/20 blur-[100px]" />
-        <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-purple-500/20 blur-[100px]" />
+      <div className="h-[40rem] w-full bg-background relative flex flex-col items-center justify-center antialiased pt-16">
+        <div className="max-w-2xl mx-auto p-4 relative z-10">
+          <h1 className="relative z-10 text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground text-center font-sans font-bold">
+            Join the LoSpace waitlist
+          </h1>
+          
+          <p className="text-muted-foreground max-w-lg mx-auto my-8 text-sm md:text-lg text-center relative z-10">
+            Be the first to experience LoSpace - the revolutionary platform designed for students, 
+            professionals, and freelancers providing both physical and digital collaborative workspaces.
+          </p>
+          
+          {!submitted ? (
+            <div className="max-w-md mx-auto mt-8 space-y-4 relative z-10">
+              <Input
+                type="text"
+                placeholder="Your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full mt-4 bg-background/60 backdrop-blur border-white/10"
+              />
+              
+              <Input
+                type="email"
+                placeholder="your.email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full mt-4 bg-background/60 backdrop-blur border-white/10"
+              />
+              
+              <Button 
+                onClick={handleSubmit}
+                type="submit" 
+                variant="primary" 
+                size="md"
+                className="w-full mt-6"
+                disabled={loading}
+              >
+                {loading ? "Processing..." : "Join Waitlist"}
+              </Button>
+            </div>
+          ) : (
+            <div className="max-w-md mx-auto mt-8 p-8 rounded-xl border border-white/10 bg-background/30 backdrop-blur text-center relative z-10">
+              <div className="text-primary text-5xl mb-4">🎉</div>
+              <h2 className="text-2xl font-semibold mb-4 text-white">You're on the list!</h2>
+              <p className="text-white mb-6">
+                Thank you for joining our waitlist. We'll notify you when LoSpace launches!
+              </p>
+              <Button 
+                onClick={() => setSubmitted(false)} 
+                variant="outline" 
+                size="sm"
+              >
+                Join with another email
+              </Button>
+            </div>
+          )}
+        </div>
+        
+        {/* Background Beams */}
+        <BackgroundBeams />
       </div>
       
-      {/* Mouse follow gradient */}
-      <MouseGradient />
-      
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 relative z-10">
+      {/* Benefits Section */}
+      <section className="py-16 relative z-10 bg-background">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Join the <span className="text-gradient">LoSpace</span> Waitlist
-            </h1>
-            <p className="text-xl text-white max-w-2xl mx-auto">
-              Be the first to experience the future of collaborative workspaces.
-            </p>
-          </motion.div>
-
-          {/* Waitlist Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="max-w-lg mx-auto mb-24"
-          >
-            {!submitted ? (
-              <div className="bg-background/40 backdrop-blur-sm p-8 rounded-xl border border-white/10">
-                <h2 className="text-2xl font-semibold mb-6 text-white">Sign up for early access</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-white mb-2">Full Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-2 bg-background/70 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-primary focus:outline-none"
-                      placeholder="Enter your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-white mb-2">Email Address</label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-2 bg-background/70 border border-white/10 rounded-lg text-white focus:ring-2 focus:ring-primary focus:outline-none"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  
-                  <Button 
-                    type="submit" 
-                    variant="primary" 
-                    size="md"
-                    className="w-full mt-6"
-                    disabled={loading}
-                  >
-                    {loading ? "Processing..." : "Join Waitlist"}
-                  </Button>
-                </form>
-              </div>
-            ) : (
-              <div className="bg-background/40 backdrop-blur-sm p-8 rounded-xl border border-white/10 text-center">
-                <div className="text-primary text-5xl mb-4">🎉</div>
-                <h2 className="text-2xl font-semibold mb-4 text-white">You're on the list!</h2>
-                <p className="text-white mb-6">
-                  Thank you for joining our waitlist. We'll notify you when LoSpace launches!
-                </p>
-                <Button 
-                  onClick={() => setSubmitted(false)} 
-                  variant="outline" 
-                  size="sm"
-                >
-                  Join with another email
-                </Button>
-              </div>
-            )}
-          </motion.div>
-          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="max-w-4xl mx-auto"
           >
+            <h2 className="text-3xl font-bold text-white text-center mb-12">Early Access Benefits</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
