@@ -40,17 +40,59 @@ const RotatingCube = ({ size = 300, className = '' }: RotatingCubeProps) => {
     mountRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
-    // Create cube geometry with a slightly gradient material
-    const geometry = new THREE.BoxGeometry(2, 2, 2);
+    // Create cube geometry with enhanced visuals
+    const geometry = new THREE.BoxGeometry(2, 2, 2, 2, 2, 2); // Added more segments for better lighting effects
     
-    // Create gradient materials
+    // Create more appealing gradient materials with glow effect
     const materials = [
-      new THREE.MeshBasicMaterial({ color: 0x1a41db, transparent: true, opacity: 0.7 }), // Right
-      new THREE.MeshBasicMaterial({ color: 0x0f2bac, transparent: true, opacity: 0.7 }), // Left
-      new THREE.MeshBasicMaterial({ color: 0x3461ff, transparent: true, opacity: 0.7 }), // Top
-      new THREE.MeshBasicMaterial({ color: 0x0f2bac, transparent: true, opacity: 0.7 }), // Bottom
-      new THREE.MeshBasicMaterial({ color: 0x1a41db, transparent: true, opacity: 0.7 }), // Front
-      new THREE.MeshBasicMaterial({ color: 0x0f2bac, transparent: true, opacity: 0.7 }), // Back
+      new THREE.MeshPhongMaterial({ 
+        color: 0x3461ff, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0x1a41db,
+        emissiveIntensity: 0.4,
+      }), // Right
+      new THREE.MeshPhongMaterial({ 
+        color: 0x6495ED, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0x0f2bac,
+        emissiveIntensity: 0.4,
+      }), // Left
+      new THREE.MeshPhongMaterial({ 
+        color: 0x9b87f5, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0x8B5CF6,
+        emissiveIntensity: 0.4,
+      }), // Top
+      new THREE.MeshPhongMaterial({ 
+        color: 0x7E69AB, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0x6E59A5,
+        emissiveIntensity: 0.4,
+      }), // Bottom
+      new THREE.MeshPhongMaterial({ 
+        color: 0xD6BCFA, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0xD946EF,
+        emissiveIntensity: 0.3,
+      }), // Front
+      new THREE.MeshPhongMaterial({ 
+        color: 0x8B5CF6, 
+        transparent: true, 
+        opacity: 0.8,
+        shininess: 100,
+        emissive: 0x6E59A5,
+        emissiveIntensity: 0.4,
+      }), // Back
     ];
     
     const cube = new THREE.Mesh(geometry, materials);
@@ -58,13 +100,22 @@ const RotatingCube = ({ size = 300, className = '' }: RotatingCubeProps) => {
     cubeRef.current = cube;
 
     // Add ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
 
     // Add directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
     directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
+
+    // Add point lights for more dynamic lighting
+    const pointLight1 = new THREE.PointLight(0xff9dff, 1, 20);
+    pointLight1.position.set(5, 5, 5);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0x7c9eff, 1, 20);
+    pointLight2.position.set(-5, -5, 5);
+    scene.add(pointLight2);
 
     // Animation loop
     let frameId: number;

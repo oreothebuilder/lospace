@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import { motion } from "framer-motion";
 import FloatingBubbles from "./FloatingBubbles";
@@ -8,6 +8,35 @@ import RotatingCube from "./RotatingCube";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [cubePosition, setCubePosition] = useState({ x: 0, y: 0 });
+  
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+      
+      // Calculate cube position based on scroll
+      // As the user scrolls down, move the cube to the bottom left
+      const maxScroll = 1000; // Maximum scroll distance to consider
+      const progress = Math.min(position / maxScroll, 1);
+      
+      // Start from top right, move to bottom left
+      const startX = 0;
+      const startY = 0;
+      const endX = -80; // Bottom left X position (percentage)
+      const endY = 80;  // Bottom left Y position (percentage)
+      
+      const newX = startX + progress * (endX - startX);
+      const newY = startY + progress * (endY - startY);
+      
+      setCubePosition({ x: newX, y: newY });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
@@ -46,6 +75,18 @@ const Hero = () => {
 
       {/* Floating Bubbles */}
       <FloatingBubbles />
+
+      {/* 3D Rotating Cube with scroll-based positioning */}
+      <div 
+        className="fixed z-50 transition-all duration-700 ease-out"
+        style={{ 
+          right: `${20 - cubePosition.x}%`, 
+          top: `${20 + cubePosition.y}%`,
+          transform: `scale(${1 - scrollPosition / 3000})` // Slightly scale down as user scrolls
+        }}
+      >
+        <RotatingCube size={150} />
+      </div>
 
       {/* Content */}
       <div ref={heroRef} className="container mx-auto px-4 pt-20 pb-12 reveal z-30">
@@ -118,11 +159,6 @@ const Hero = () => {
         }} className="relative w-full max-w-[600px] mx-auto">
             <div className="glass-card rounded-2xl overflow-hidden shadow-2xl relative">
               <img src="/lovable-uploads/950e6975-e576-4237-a40e-1c0fa7eb80a1.png" alt="Video call illustration" className="w-full h-auto" />
-              
-              {/* 3D Rotating Cube */}
-              <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 z-10">
-                <RotatingCube size={150} />
-              </div>
             </div>
           </motion.div>
         </div>
