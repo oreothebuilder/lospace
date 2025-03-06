@@ -1,10 +1,14 @@
+
 import { useEffect, useRef } from "react";
 import Button from "./Button";
 import { motion } from "framer-motion";
 import FloatingBubbles from "./FloatingBubbles";
 import MouseGradient from "./MouseGradient";
+import RotatingCube from "./RotatingCube";
+
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -15,16 +19,21 @@ const Hero = () => {
     }, {
       threshold: 0.1
     });
+
     if (heroRef.current) {
       observer.observe(heroRef.current);
     }
+
     return () => observer.disconnect();
   }, []);
+
   const mainText = "Changing the way";
   const subText = "you grind";
   const mainWords = mainText.split(" ");
   const subWords = subText.split(" ");
-  return <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+  return (
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Fixed background gradients */}
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
@@ -96,7 +105,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right side - Illustration */}
+          {/* Right side - Illustration with 3D element */}
           <motion.div initial={{
           opacity: 0,
           x: 20
@@ -107,12 +116,19 @@ const Hero = () => {
           duration: 1,
           delay: 0.5
         }} className="relative w-full max-w-[600px] mx-auto">
-            <div className="glass-card rounded-2xl overflow-hidden shadow-2xl">
+            <div className="glass-card rounded-2xl overflow-hidden shadow-2xl relative">
               <img src="/lovable-uploads/950e6975-e576-4237-a40e-1c0fa7eb80a1.png" alt="Video call illustration" className="w-full h-auto" />
+              
+              {/* 3D Rotating Cube */}
+              <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 z-10">
+                <RotatingCube size={150} />
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Hero;
