@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -6,14 +7,22 @@ import { useToast } from "@/components/ui/use-toast";
 import Button from "@/components/Button";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Input } from "@/components/ui/input";
+
+// Define a type for our waitlist entries
+interface WaitlistEntry {
+  id: string;
+  name: string;
+  email: string;
+  timestamp: string;
+}
+
 const Waitlist = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -26,9 +35,30 @@ const Waitlist = () => {
       });
       return;
     }
+    
     setLoading(true);
 
-    // Simulate API call
+    // Create a unique ID for this entry
+    const entryId = Date.now().toString();
+    
+    // Create the entry object
+    const newEntry: WaitlistEntry = {
+      id: entryId,
+      name: name.trim(),
+      email: email.trim(),
+      timestamp: new Date().toISOString()
+    };
+
+    // Get existing entries or initialize empty array
+    const existingEntries: WaitlistEntry[] = JSON.parse(
+      localStorage.getItem('waitlistEntries') || '[]'
+    );
+    
+    // Add new entry and save back to localStorage
+    existingEntries.push(newEntry);
+    localStorage.setItem('waitlistEntries', JSON.stringify(existingEntries));
+
+    // Simulate API call delay
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
@@ -38,6 +68,7 @@ const Waitlist = () => {
       });
     }, 1500);
   };
+
   return <div className="min-h-screen flex flex-col">
       <Nav />
 
@@ -121,4 +152,5 @@ const Waitlist = () => {
       <Footer />
     </div>;
 };
+
 export default Waitlist;

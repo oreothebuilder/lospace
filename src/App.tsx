@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Index from "./pages/Index";
 import AboutUs from "./pages/AboutUs";
 import Waitlist from "./pages/Waitlist";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
 
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/waitlist" element={<Waitlist />} />
+            <Route path="/admin" element={<Admin />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
